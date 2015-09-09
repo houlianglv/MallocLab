@@ -1,13 +1,11 @@
 /*
- * mm-naive.c - The fastest, least memory-efficient malloc package.
- * 
- * In this naive approach, a block is allocated by simply incrementing
- * the brk pointer.  A block is pure payload. There are no headers or
- * footers.  Blocks are never coalesced or reused. Realloc is
- * implemented directly using mm_malloc and mm_free.
+ * mm.c - The implementation of the dynamic memory allocator
+ * The free block list of this allocator is stored in a Binary Search Tree
+ * The fit strategy is best fit: always find the smallest block that fit the request size
+ * BST balances the speed of insert and find, compared with the implementation using linked list
+ * As a result, the overall performance is quite good
+ * The key of this lab is making tradeoff in space and speed
  *
- * NOTE TO STUDENTS: Replace this header comment with your own header
- * comment that gives a high level description of your solution.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -112,7 +110,7 @@ void *mm_realloc (void *bp, size_t size);
 /* private static helper functions */
 static void *coalesce (void *bp); //coalesce free block
 static void *extend_heap (size_t size); //extend heap
-static void place (void *ptr, size_t asize); //
+static void place (void *ptr, size_t asize); //place the request size in the block
 static void insert_node (void *bp); //insert node into BST
 static void delete_node (void *bp); //delete node from BST
 static void *find_fit (size_t asize); //find the best fit block
