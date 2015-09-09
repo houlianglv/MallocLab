@@ -1,4 +1,4 @@
-#####################################################################
+<pre>#####################################################################
 # CS:APP Malloc Lab
 # Handout files for students
 #
@@ -53,3 +53,4 @@ The -V option prints out helpful tracing and summary information.
 To get a list of the driver flags:
 
 	unix> mdriver -h
+</pre>
